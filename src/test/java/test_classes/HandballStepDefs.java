@@ -25,14 +25,14 @@ public class HandballStepDefs {
 
 	@When("^Estelle choisit le nom (.*), le prénom (.*) et le numéro (\\d+) du joueur$")
 	public void choixNomPrenomNumero(String n, String p, int num) throws Throwable {
-		nomJoueur = n;
-		prenomJoueur = p;
-		numeroJoueur = num;
+		this.nomJoueur = n;
+		this.prenomJoueur = p;
+		this.numeroJoueur = num;
 	}
 
 	@Then("^le joueur est créé$")
 	public void creerJoueur() throws Throwable {
-		joueur = new Joueur (nomJoueur, prenomJoueur, numeroJoueur);
+		this.joueur = new Joueur (nomJoueur, prenomJoueur, numeroJoueur);
 	}
 
 
@@ -42,12 +42,12 @@ public class HandballStepDefs {
 
 	@When("^Estelle choisit un nom d'equipe (.*)$")
 	public void choixNomEquipe(String n) throws Throwable {
-		nomEquipe = n;
+		this.nomEquipe = n;
 	}
 
 	@Then("^l'équipe est créée$")
 	public void creerEquipe() throws Throwable {
-		equipe = new Equipe (nomEquipe);
+		this.equipe = new Equipe (nomEquipe);
 	}
 
 	@Given("^une equipe et une joueur$")
@@ -57,14 +57,14 @@ public class HandballStepDefs {
 	@When("^le joueur est ajouté à l'équipe (.*)$")
 	public void ajoutJoueurEquipe(String e) throws Throwable {
 		if(equipe.getNom() == e ){
-			listeJoueur = equipe.ajouterJoueur(joueur);
+			this.listeJoueur = this.equipe.ajouterJoueur(joueur);
 		}
 		
 	}
 
 	@Then("^la liste des joueurs de l'équipe est affiché$")
 	public void afficheListeJoueur() throws Throwable {
-		System.out.println(listeJoueur);
+		System.out.println(this.listeJoueur);
 	}
 
 	@Then("^Un message d'erreur s'affiche$")
