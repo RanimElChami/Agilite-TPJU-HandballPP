@@ -40,7 +40,7 @@ public class Equipe {
 
 	// Méthodes
 	// Cette nouvelle version permet d'ajouter plusieurs joueurs à l'équipe en appellant la méthode une seule fois
-	public ArrayList<Joueur> ajouterJoueur(Joueur...joueurs){
+	public ArrayList<Joueur> ajouterJoueur(Joueur...joueurs) throws JoueurDejaMembreException{
 		//System.out.println("Ajout d'un nouveau joueur");
 		// Vérifier si l'argument reçu est un paramètre de la classe Joueur et n'est pas vide
 		for (Joueur joueur : joueurs) { 
@@ -48,18 +48,10 @@ public class Equipe {
 			// Vérifier si le joueur ne fait pas partie d'une autre équipe
 			if (listeJoueurs.contains(joueur)) {
 				// Throw an exception
-				try {
-					throw new JoueurDejaMembreException("Le joueur est déjà un membre de cette équipe! Il ne sera pas ajouté à nouveau");
-				} catch (JoueurDejaMembreException e) {
-					e.printStackTrace();
-				}
+				throw new JoueurDejaMembreException();
 			} else if(joueur.getEquipe() != null) {
 				// Throw an exception
-				try {
-					throw new JoueurDejaMembreException("Le joueur est déjà un membre de l'équipe " + joueur.getEquipe());
-				} catch (JoueurDejaMembreException e) {
-					e.printStackTrace();
-				}
+				throw new JoueurDejaMembreException("Le joueur est déjà un membre de l'équipe " + joueur.getEquipe());
 			} else {
 				this.listeJoueurs.add(joueur);
 				// Modifier la valeur de l'attribut equipe du joueur, où celle-ci deviendra une instance de la classe en cours
