@@ -41,6 +41,7 @@ public class JoueurVirtuel extends Joueur {
 	 * générales du joueur, sinon, le message affiché indiquera que le joueur n'a pas d'équipe
 	 * @return les informations générales du joueur
 	 */
+	@Override
 	public String afficherDetailsJoueur(){
 		String s = super.afficherDetailsJoueur();
 		if(Objects.nonNull(this.ordinateur)) {

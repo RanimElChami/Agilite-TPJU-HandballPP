@@ -50,23 +50,29 @@ public class HandballStepDefs {
 		this.equipe = new Equipe (nomEquipe);
 	}
 
-	@Given("une équipe (.*) et un joueur (.*), (.*), (\\d+)")
+	// New 2
+	@Given("une équipe {string} et un joueur {string}, {string}, {int}")
 	public void une_équipe_et_un_joueur(String nEquipe, String nJoueur, String pJoueur, int nuJoueur) {
 		this.equipe = new Equipe(nEquipe);
-		this.joueur = new Joueur(nJoueur, pJoueur, nJoueur);
+		this.joueur = new Joueur(nJoueur, pJoueur, nuJoueur);
 	}
-	
-	@Given("une équipe (.*) et un joueur (.*), (.*), (\\d+) de l'équipe (.*)")
-	public void une_équipe_et_un_joueur_d_une_equipe(String nEquipe, String nJoueur, String pJoueur, int nuJoueur, String eJoueur) {
+
+	@Given("une équipe {string} et un joueur {string}, {string}, {int} de l'équipe {string}")
+	public void une_équipe_et_un_joueur_de_l_équipe(String nEquipe, String nJoueur, String pJoueur, int nuJoueur, String eJoueur) throws JoueurDejaMembreException {
 		this.equipe = new Equipe(nEquipe);
 		this.equipe2 = new Equipe(eJoueur);
-		this.joueur = new Joueur(nJoueur, pJoueur, nJoueur);
+		this.joueur = new Joueur(nJoueur, pJoueur, nuJoueur);
 		this.equipe2.ajouterJoueur(joueur);
 	}
 	
+	
 	@When("le joueur ne sera pas ajouté à l'équipe")
-	public void le_joueur_ne_sera_pas_ajouté_à() throws JoueurDejaMembreException {
-		this.listeJoueur = this.equipe.ajouterJoueur(joueur);
+	public void le_joueur_ne_sera_pas_ajouté_à() {
+		try {
+			this.listeJoueur = this.equipe.ajouterJoueur(joueur);
+		} catch (JoueurDejaMembreException e) {
+			
+		}
 	}
 	
 	@When("^le joueur est ajouté à l'équipe$")

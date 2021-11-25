@@ -33,9 +33,9 @@ Feature: US_001_RecrutementEquipe
 		Then la liste des joueurs de l'équipe est affiché
 
 	Examples: 
-			| equipe			| nom		| prenom 	| numéro	|
+			| equipe			| nom		| prenom 	| numero	|
 			| "Montpellier Handball"      	| "Karabatic"	|"Nikola"	|33		|
-			| "Montpellier Handball"      	| "Karabatic"	|"Luka	"	|11		|
+			| "Montpellier Handball"      	| "Karabatic"	|"Luka"	|11		|
 
 	Scenario Outline: Estelle veut recruter un joueur qui appartient déjà à une équipe
 		Given une équipe <equipe> et un joueur <nom>, <prenom>, <numero> de l'équipe <equipeJoueur>
@@ -43,6 +43,6 @@ Feature: US_001_RecrutementEquipe
 		Then Un message d'erreur s'affiche
 		
 		Examples:
-			| equipe			| nom		| prenom 	| numéro	| equipeJoueur 	|
+			| equipe			| nom		| prenom 	| numero	| equipeJoueur 	|
 			| "Montpellier Handball"      	| "Karabatic"	|"Nikola"	|33		|"PSG Handball"	|
 			| "Montpellier Handball"      	| "Karabatic"	|"Luka	"	|11		|"HBC Nantes"	|
