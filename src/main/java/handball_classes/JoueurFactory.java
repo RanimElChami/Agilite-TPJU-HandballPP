@@ -6,7 +6,6 @@ public class JoueurFactory {
 			return new Joueur();
 		} else if(joueurType.equalsIgnoreCase("JoueurVirtuel")){
 			return new JoueurVirtuel();
-
 		} else {
 			return null;
 		}

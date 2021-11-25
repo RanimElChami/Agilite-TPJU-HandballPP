@@ -1,5 +1,5 @@
 #Author: Samia et Yassine
-Feature: Suivi du materiels
+Feature: US_002_SuiviDuMateriels
   En tant que responsable du materiels
   Je veux enregistrer tous les ordinateurs et leurs peripheriques attaches et les peripheriques en stock
   Afin d'avoir un suivi sur l'ensemble du materiels informatiques et faciliter l'inventaire annuelle

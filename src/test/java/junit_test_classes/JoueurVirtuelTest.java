@@ -11,6 +11,7 @@ import electronics_classes.Ordinateur;
 import electronics_classes.Peripherique;
 import exceptions.JoueurDejaMembreException;
 import exceptions.JoueurNonMembreException;
+import exceptions.PeripheriqueDejaAjouteException;
 import handball_classes.Equipe;
 import handball_classes.Joueur;
 import handball_classes.JoueurVirtuel;
@@ -117,16 +118,27 @@ public class JoueurVirtuelTest {
 	}
 	
 	@Test
-	public void testAjoutPéripheriquesAuJoueurOrdinateur() {
+	public void testAjoutPéripheriquesAuJoueurOrdinateur() throws PeripheriqueDejaAjouteException {
 		// Après avoir attribué un ordinateur au joueur virtuel, on attribue maintenant un ou plusieurs 
 		// périphériques à l'ordinateur attribué
 		newJoueurVirtuel.setOrdinateur(newOrdinateur);
-		newOrdinateur.addPeripherique(logitech);
-		newOrdinateur.addPeripherique(hp);
+		newJoueurVirtuel.ajouterPeripherique(logitech, hp);
 		// Vérifier que le périphérique a bien été ajouté à la liste et la propriété ordinateur du périphérique
 		// est égale à l'ordinateur auquel ce périphérique a été ajouté
 		assertEquals(logitech.getOrdi(), newOrdinateur);
 		assertEquals(hp.getOrdi(), newOrdinateur);
+	}
+	
+	@Test(expected = PeripheriqueDejaAjouteException.class)
+	public void testAjoutMemePéripheriquesAuJoueurOrdinateur() throws PeripheriqueDejaAjouteException {
+		// Après avoir attribué un ordinateur au joueur virtuel, vérifier si une exception est lancée
+		// lorsqu'on ajoute le meme périphérique plusieurs fois au meme ordinateur
+		newJoueurVirtuel.setOrdinateur(newOrdinateur);
+		newJoueurVirtuel.ajouterPeripherique(logitech);
+		newJoueurVirtuel.ajouterPeripherique(logitech);
+		// Vérifier que le périphérique a bien été ajouté à la liste et la propriété ordinateur du périphérique
+		// est égale à l'ordinateur auquel ce périphérique a été ajouté
+		assertEquals(logitech.getOrdi(), newOrdinateur);
 	}
 	
 	@Test
@@ -138,8 +150,6 @@ public class JoueurVirtuelTest {
 		newJoueurVirtuel.seDeconnecter();
 		// Vérifier que le joueur virtuel n'a plus d'ordinateur attribué
 		assertNull(newJoueurVirtuel.getOrdinateur());
-		// Vérifier que l'odinateur n'a plus de périphériques
-		assertEquals(newOrdinateur.getPeripheriques().size(), 0);
 		
 		// Vérifier si la liste de périphériques de l'odinateur en question est vide après deconnection
 		//assertNull(logitech.getOrdi());

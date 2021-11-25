@@ -67,7 +67,7 @@ public class Joueur implements IJoueur {
     	numero + ", je fait partie de l'équipe " + this.equipe.getNom() + ".";
     	} else {
     		return "Hello, je m'appelle " + this.prenom + " " + this.nom + ". Mon numéro est " + 
-    	this.numero + ", je n'ai pas encore d'équipe." ;
+    	this.numero + ", je n'ai pas encore d'équipe.";
     	}
     }
     
@@ -77,7 +77,7 @@ public class Joueur implements IJoueur {
 		  return this.getPrenom() + " " + this.getNom();  
 	}
 
-	public void fonction() {
+    public void typeDuJoueur() {
 		System.out.println("Je suis un joueur de handball");
-	} 
+	}
 }

@@ -2,7 +2,6 @@ package cucumber_test_classes;
 
 import org.junit.Assert;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -21,6 +20,7 @@ public class JoueurVirtuelStepsDefs {
 	private Ordinateur ord; 
 	private Peripherique oculus;
 	private Peripherique joysticks;
+	
 	@Given("une equipe")
 	public void une_equipe() {
 		planeteTerre = new Equipe("Planete Terre");
@@ -28,7 +28,7 @@ public class JoueurVirtuelStepsDefs {
 
 	@When("coach choisit le nom (.*), le prenom (.*) et le numero (\\d+) du joueur virtuel")
 	public void coach_choisit_le_nom_le_prenom_et_le_numero_du_joueur_virtuel(String nom, String prenom, Integer n) {
-		joueurV1= new JoueurVirtuel(nom, prenom, n, null); 
+		joueurV1 = new JoueurVirtuel(nom, prenom, n, null); 
 	}
 
 	@Then("le joueur virtuel est cree et il reçoit un (.*) avec ses (.*)")
@@ -40,12 +40,13 @@ public class JoueurVirtuelStepsDefs {
 		joysticks = new Peripherique(words[1]);
 		ord.addPeripherique(oculus);
 		ord.addPeripherique(joysticks);
-		planeteTerre.ajouterJoueur(joueurV1); 
+		joueurV1.setOrdinateur(ord);
+		planeteTerre.ajouterJoueur(joueurV1);
 	}
 
 	@Given("le joueur virtuel numero (\\d+) au banc")
 	public void le_joueur_virtuel_numero_au_banc(Integer n) {
-		joueurV1= new JoueurVirtuel("Messi", "Lionel", n , null); 	
+		joueurV1 = new JoueurVirtuel("Messi", "Lionel", n , null); 	
 	}
 
 	@When("le coach decide de changer le joueur virtuel nuemro (\\d+)")
@@ -55,32 +56,28 @@ public class JoueurVirtuelStepsDefs {
 		joysticks = new Peripherique("GantsVR");
 		ord.addPeripherique(oculus);
 		ord.addPeripherique(joysticks);
-		joueurV2= new JoueurVirtuel("Ronaldo", "Cristiano", n , ord); 
+		joueurV2 = new JoueurVirtuel("Ronaldo", "Cristiano", n , ord); 
 	}
 
 	@Then("la machine va passer au joueur choisi par le coach")
 	public void la_machine_va_passer_au_joueur_choisi_par_le_coach() {
 	    joueurV1.setOrdinateur(joueurV2.getOrdinateur());
-	    joueurV2.setOrdinateur(null);
+	    joueurV2.seDeconnecter();
 	}
 
 	@Given("un joueur ordinaire avec le nom (.*), le prenom (.*) et le numero (\\d+)")
 	public void un_joueur_ordinaire_avec_le_nom_le_prenom_et_le_numero(String nom, String prenom, Integer n) {
-		joueur= new Joueur(nom, prenom, n); 
+		joueur = new Joueur(nom, prenom, n); 
 	}
 
 	@When("le coach veut le recruter dans son equipe virtuelle")
 	public void le_coach_veut_le_recruter_dans_son_equipe_virtuelle() {
 		planeteTerre = new Equipe("Planete Terre");
-		
 	}
 
 	@Then("le coach va le transformer en joueur virtuelle")
 	public void le_coach_va_le_transformer_en_joueur_virtuelle() throws JoueurDejaMembreException {
-		joueurV1= new JoueurVirtuel(joueur.getNom(), joueur.getPrenom(), joueur.getNumero(), null);
-		planeteTerre.ajouterJoueur(joueurV1); 
-		
+		joueurV1 = new JoueurVirtuel(joueur.getNom(), joueur.getPrenom(), joueur.getNumero());
+		planeteTerre.ajouterJoueur(joueurV1);
 	}
-
-
 }

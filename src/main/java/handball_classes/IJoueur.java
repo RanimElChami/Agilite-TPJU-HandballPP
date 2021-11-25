@@ -1,5 +1,5 @@
 package handball_classes;
 
 public interface IJoueur {
-	public void fonction();
+	public void typeDuJoueur();
 }

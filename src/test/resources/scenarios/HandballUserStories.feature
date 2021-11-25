@@ -39,10 +39,10 @@ Feature: US_001_RecrutementEquipe
 
 	Scenario Outline: Estelle veut recruter un joueur qui appartient déjà à une équipe
 		Given une équipe et un joueur
-		When le joueur est ajouté à l'équipe <equipe>
+		When le joueur ne sera pas ajouté à <equipe>
 		Then Un message d'erreur s'affiche
 		
 		Examples:
-			| equipe			| joueur 	|
+			| equipe												| joueur 	|
 			| "Montpellier Handball"      	| j1		|
 			| "Montpellier Handball"      	| j2		|

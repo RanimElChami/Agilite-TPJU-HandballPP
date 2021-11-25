@@ -18,7 +18,7 @@ public class OrdinateurTest {
 	}
 	@Test
 	public void testSampleMethod(){
-		String expected= "Desktop Apple\nPeripheriques : \n";
+		String expected = "Desktop Apple\nPeripheriques : \n";
 		String result = ordinateur1.sampleMethod();
 		Assert.assertTrue(expected.equals(result));
 	}
@@ -28,9 +28,5 @@ public class OrdinateurTest {
 		Assert.assertEquals(ordinateur1, ordinateur1);
 		Assert.assertEquals(ordinateur1, new Ordinateur("Desktop", "Apple"));
 		Assert.assertTrue(!ordinateur1.equals(ordinateur2));
-	}
-
-	public static TestSuite suite() {
-		return new TestSuite(OrdinateurTest.class);
 	}
 }
