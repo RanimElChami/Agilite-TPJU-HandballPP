@@ -11,6 +11,7 @@ import handball_classes.Joueur;
 
 public class HandballStepDefs {
 	private Equipe equipe;
+	private Equipe equipe2;
 	private Joueur joueur;
 	private ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
 	private String nomEquipe;
@@ -49,24 +50,28 @@ public class HandballStepDefs {
 		this.equipe = new Equipe (nomEquipe);
 	}
 
-	@Given("une équipe et un joueur")
-	public void une_équipe_et_un_joueur() {
-		this.equipe = new Equipe(nomEquipe);
-		this.joueur = new Joueur(nomJoueur, prenomJoueur, numeroJoueur);
+	@Given("une équipe (.*) et un joueur (.*), (.*), (\\d+)")
+	public void une_équipe_et_un_joueur(String nEquipe, String nJoueur, String pJoueur, int nuJoueur) {
+		this.equipe = new Equipe(nEquipe);
+		this.joueur = new Joueur(nJoueur, pJoueur, nJoueur);
 	}
 	
-	@When("le joueur ne sera pas ajouté à {string}")
-	public void le_joueur_ne_sera_pas_ajouté_à(String string) throws JoueurDejaMembreException {
-		if(equipe.getNom() == string){
-			this.listeJoueur = this.equipe.ajouterJoueur(joueur);
-		}
+	@Given("une équipe (.*) et un joueur (.*), (.*), (\\d+) de l'équipe (.*)")
+	public void une_équipe_et_un_joueur_d_une_equipe(String nEquipe, String nJoueur, String pJoueur, int nuJoueur, String eJoueur) {
+		this.equipe = new Equipe(nEquipe);
+		this.equipe2 = new Equipe(eJoueur);
+		this.joueur = new Joueur(nJoueur, pJoueur, nJoueur);
+		this.equipe2.ajouterJoueur(joueur);
 	}
 	
-	@When("^le joueur est ajouté à l'équipe (.*)$")
-	public void ajoutJoueurEquipe(String e) throws Throwable {
-		if(equipe.getNom() == e){
-			this.listeJoueur = this.equipe.ajouterJoueur(joueur);
-		}
+	@When("le joueur ne sera pas ajouté à l'équipe")
+	public void le_joueur_ne_sera_pas_ajouté_à() throws JoueurDejaMembreException {
+		this.listeJoueur = this.equipe.ajouterJoueur(joueur);
+	}
+	
+	@When("^le joueur est ajouté à l'équipe$")
+	public void ajoutJoueurEquipe() throws Throwable {
+		this.listeJoueur = this.equipe.ajouterJoueur(joueur);
 	}
 
 	@Then("^la liste des joueurs de l'équipe est affiché$")
