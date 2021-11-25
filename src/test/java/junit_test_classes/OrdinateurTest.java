@@ -2,6 +2,7 @@ package junit_test_classes;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
 import electronics_classes.Ordinateur;
 import junit.framework.TestSuite;
@@ -15,13 +16,13 @@ public class OrdinateurTest {
 		ordinateur1 = new Ordinateur("Desktop", "Apple");
 		ordinateur2 = new Ordinateur("Laptop", "HP");
 	}
-
+	@Test
 	public void testSampleMethod(){
 		String expected= "Desktop Apple\nPeripheriques : \n";
 		String result = ordinateur1.sampleMethod();
 		Assert.assertTrue(expected.equals(result));
 	}
-
+	@Test
 	public void testEquals() {
 		Assert.assertTrue(!ordinateur1.equals(null));
 		Assert.assertEquals(ordinateur1, ordinateur1);

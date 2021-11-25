@@ -13,7 +13,7 @@ Feature: CompetitionIntergalactique
 		Then le joueur virtuel est cree et il reçoit un <ordinateur> avec ses <peripherique>
 		
 		  Examples: 
-      | name         | prenom    | numero | ordinateur              | peripherique        |
+      | nom          | prenom    | numero | ordinateur              | peripherique        |
       | "ALAMMASSE"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR, GantsVR" |
       | "BENISSA"    | "Yassine" | 7      | "PS5 Sony"              | "CasqueVR, GantsVR" |
       | "EL CHAMI"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR, GantsVR" |
