@@ -14,10 +14,10 @@ Feature: CompetitionIntergalactique
 		
 		  Examples: 
       | nom          | prenom    | numero | ordinateur              | peripherique        |
-      | "ALAMMASSE"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR, GantsVR" |
-      | "BENISSA"    | "Yassine" | 7      | "PS5 Sony"              | "CasqueVR, GantsVR" |
-      | "EL CHAMI"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR, GantsVR" |
-      | "GRAU-FARRE" | "Estelle" | 11     | "XboxSeriesX Microsoft" | "CasqueVR, GantsVR" |
+      | "ALAMMASSE"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR GantsVR" |
+      | "BENISSA"    | "Yassine" | 7      | "PS5 Sony"              | "CasqueVR GantsVR" |
+      | "EL CHAMI"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR GantsVR" |
+      | "GRAU-FARRE" | "Estelle" | 11     | "XboxSeriesX Microsoft" | "CasqueVR GantsVR" |
 
   
   Scenario Outline: Coach veut faire un changement de joueurs viruels
@@ -28,6 +28,7 @@ Feature: CompetitionIntergalactique
     Examples:     
       | numero1 | numero2 |
       | 12      | 10      |
+      | 11      | 13      |
       
    Scenario Outline: Coach veut integrer un joueuer ordinaire a son equipe virtuel  
     Given un joueur ordinaire avec le nom <nom>, le prenom <prenom> et le numero <numero>
@@ -35,7 +36,8 @@ Feature: CompetitionIntergalactique
     Then le coach va le transformer en joueur virtuelle 
 
     Examples:     
-      | nom     | prenom   | numero | 
-      | "Messi" | "Lionel" |  10    |
+      | nom       | prenom      | numero | 
+      | "Messi"   | "Lionel"    |  10    |
+      | "Ronaldo" | "Cristiano" |  7     |
      
       
