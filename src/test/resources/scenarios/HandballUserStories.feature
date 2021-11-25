@@ -13,7 +13,7 @@ Feature: US_001_RecrutementEquipe
 		| nom 			| prenom 	  	| numero	|
 		| "Karabatic"		| "Nikola"		| 13		|
 		| "Karabatic"		| "Luka"		| 22		|
-		| "Porte"		| "Valentin"		| 28		|
+		| "Porte"				| "Valentin"		| 28		|
 		| "Lassource"		| "Coralie"		| 8		|
 		
 	Scenario Outline: Estelle veut créer son équipe
