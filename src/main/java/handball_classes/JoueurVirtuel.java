@@ -1,9 +1,11 @@
 package handball_classes;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import electronics_classes.Ordinateur;
 import electronics_classes.Peripherique;
+import exceptions.JoueurDejaMembreException;
 
 public class JoueurVirtuel extends Joueur implements IJoueur {
 	private Ordinateur ordinateur;
@@ -49,11 +51,20 @@ public class JoueurVirtuel extends Joueur implements IJoueur {
 	}
 
 	public void seDeconnecter() {
+		this.getOrdinateur().setPeripheriques(new ArrayList<Peripherique>());
 		this.setOrdinateur(null);
 	}
 	
-	public void ajouterPeripherique(Peripherique p) {
-		this.ordinateur.addPeripherique(p);
+	public void ajouterPeripherique(Peripherique...peripheriques) {
+		for (Peripherique peripherique : peripheriques) { 
+			if (this.getOrdinateur().getPeripheriques().contains(peripherique)) {
+				// Throw an exception
+				//throw new JoueurDejaMembreException();
+				// Vérifier si le joueur ne fait pas partie d'une autre équipe
+			} else {
+				this.ordinateur.addPeripherique(peripherique);
+			}
+		}
 	}
 	
 	@Override

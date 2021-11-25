@@ -14,15 +14,15 @@ Feature: CompetitionIntergalactique
 		
 		  Examples: 
       | name         | prenom    | numero | ordinateur              | peripherique        |
-      | "Alammasse"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR, GantsVR" |
+      | "ALAMMASSE"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR, GantsVR" |
       | "BENISSA"    | "Yassine" | 7      | "PS5 Sony"              | "CasqueVR, GantsVR" |
-      | "El Chami"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR, GantsVR" |
+      | "EL CHAMI"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR, GantsVR" |
       | "GRAU-FARRE" | "Estelle" | 11     | "XboxSeriesX Microsoft" | "CasqueVR, GantsVR" |
 
   
   Scenario Outline: Coach veut faire un changement de joueurs viruels
-    Given le joueur virtuel numero <numero> au banc 
-    When le coach decide de changer le joueur virtuel nuemro <numero>
+    Given le joueur virtuel numero <numero1> au banc 
+    When le coach decide de changer le joueur virtuel nuemro <numero2>
     Then la machine va passer au joueur choisi par le coach
 
     Examples:     

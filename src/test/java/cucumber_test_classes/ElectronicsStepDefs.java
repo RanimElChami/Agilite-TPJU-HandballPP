@@ -31,7 +31,6 @@ public class ElectronicsStepDefs {
 	public void le_collaborateur_le_recoit() {
 		ord1 = new Ordinateur("Desktop", "HP");
 		ord2 = new Ordinateur("Laptop", "mac");
-		
 	}
 
 	@Then("le peripherique est affecter a son Desktop HP")
@@ -42,7 +41,6 @@ public class ElectronicsStepDefs {
         Assert.assertTrue(expected.equals(result));
 	}
 	
-
 	@Then("le peripherique est affecter a son Laptop mac")
 	public void le_peripherique_est_affecter_a_son_Laptop_mac() {
 		ord2.addPeripherique(this.cherry);
@@ -72,7 +70,7 @@ public class ElectronicsStepDefs {
 	@Then("chaque Desktop HP est affiche avec ses peripheriques")
 	public void chaque_Desktop_HP_est_affiche_avec_ses_peripheriques() {
 		String expected= "Desktop HP\nPeripheriques : \nSouris\nClavier\n";
-        String  result= ord1.sampleMethod();
+        String result= ord1.sampleMethod();
         Assert.assertTrue(expected.equals(result));
 	}
 
