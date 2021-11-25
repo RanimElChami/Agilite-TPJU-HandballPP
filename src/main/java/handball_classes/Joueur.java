@@ -2,7 +2,7 @@ package handball_classes;
 
 import java.util.Objects;
 
-public class Joueur {
+public class Joueur implements IJoueur {
 	// Variables d'instance
 	// Nom du joueur
     private String nom;  
@@ -25,6 +25,8 @@ public class Joueur {
         this.prenom = prenom;
         this.numero = num;
     }
+    
+    public Joueur(){}
     
     // Les accesseurs des attributs de la classe Joueur
     public String getNom(){
@@ -69,8 +71,13 @@ public class Joueur {
     	}
     }
     
+	// Redéfinition de la méthode toString() pour afficher le nom de l'équipe au lieu de l'identifiant de l'instance
     @Override
 	public String toString(){ 
 		  return this.getPrenom() + " " + this.getNom();  
+	}
+
+	public void fonction() {
+		System.out.println("Je suis un joueur de handball");
 	} 
 }

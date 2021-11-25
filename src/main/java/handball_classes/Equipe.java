@@ -45,10 +45,10 @@ public class Equipe {
 		// Vérifier si l'argument reçu est un paramètre de la classe Joueur et n'est pas vide
 		for (Joueur joueur : joueurs) { 
 			// Vérifier si le joueur reçu n'existe pas déjà dans la liste
-			// Vérifier si le joueur ne fait pas partie d'une autre équipe
 			if (listeJoueurs.contains(joueur)) {
 				// Throw an exception
 				throw new JoueurDejaMembreException();
+				// Vérifier si le joueur ne fait pas partie d'une autre équipe
 			} else if(joueur.getEquipe() != null) {
 				// Throw an exception
 				throw new JoueurDejaMembreException("Le joueur est déjà un membre de l'équipe " + joueur.getEquipe());
@@ -62,25 +62,29 @@ public class Equipe {
 		return this.listeJoueurs;
 	}
 
-	public ArrayList<Joueur> supprimerJoueur(Joueur nouveauJoueur) throws JoueurNonMembreException{
+	// Méthode permettant la suppression d'un ou de plusieurs joueurs reçus en paramètre
+	public ArrayList<Joueur> supprimerJoueur(Joueur...joueurs) throws JoueurNonMembreException{
 		// Vérifier si le joueur reçu existe dans la liste
-		if (listeJoueurs.contains(nouveauJoueur)) {
-			this.listeJoueurs.remove(nouveauJoueur);
-			// Modifier la valeur de l'attribut equipe du joueur, où celle-ci deviendra égale à null
-			// puisque le joueur n'appartient plus à une équipe
-			nouveauJoueur.setEquipe(null);
-		} else {
-			// Throw an exception
-			throw new JoueurNonMembreException("Le joueur n'appartient pas à cette équipe! L'opération d'ajout ne sera pas réalisée");
+		for (Joueur joueur : joueurs) {
+			if (listeJoueurs.contains(joueur)) {
+				this.listeJoueurs.remove(joueur);
+				// Modifier la valeur de l'attribut equipe du joueur, où celle-ci deviendra égale à null
+				// puisque le joueur n'appartient plus à une équipe
+				joueur.setEquipe(null);
+			} else {
+				// Throw an exception
+				throw new JoueurNonMembreException("Le joueur n'appartient pas à cette équipe! L'opération d'ajout ne sera pas réalisée");
+			}
 		}
-
 		return listeJoueurs;
 	}
-
+	
+	// Afficher le nombre de joueurs au sein d'une équipe particulière
 	public int nombreDeJoueurs() {
 		return this.listeJoueurs.size();
 	}
 
+	// Redéfinition de la méthode toString() pour afficher le nom de l'équipe au lieu de l'identifiant de l'instance
 	@Override
 	public String toString(){ 
 		return this.getNom();  

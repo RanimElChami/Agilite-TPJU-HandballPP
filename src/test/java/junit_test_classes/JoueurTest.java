@@ -1,4 +1,4 @@
-package test_classes;
+package junit_test_classes;
 
 import static org.junit.Assert.*;
 
@@ -34,7 +34,6 @@ public class JoueurTest {
 		assertEquals(newJoueur.afficherDetailsJoueur(), "Hello, je m'appelle " + newJoueur.getPrenom() + 
 				" " + newJoueur.getNom() + ". Mon numéro est " + 
 				newJoueur.getNumero() + ", je n'ai pas encore d'équipe.");
-
 	}
 
 }

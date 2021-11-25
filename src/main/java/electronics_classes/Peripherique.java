@@ -4,27 +4,24 @@ public class Peripherique {
 	// Variables
 	private String type; 
 	private Ordinateur ordi;
-	
-	// Getters and Setters
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public Ordinateur getOrdi() {
-		return ordi;
-	}
-
-	public void setOrdi(Ordinateur ordi) {
-		this.ordi = ordi;
-	}
 
 	// Constructeur
 	public Peripherique(String type){
 		this.type = type;
+	}
+
+	// Getters and Setters
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Ordinateur getOrdi() {
+		return ordi;
+	}
+	public void setOrdi(Ordinateur ordi) {
+		this.ordi = ordi;
 	}
 
 	// Méthodes

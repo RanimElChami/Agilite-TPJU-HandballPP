@@ -1,4 +1,6 @@
-package test_classes;
+package cucumber_test_classes;
+
+import java.util.ArrayList;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,18 +11,15 @@ import handball_classes.Joueur;
 public class HandballStepDefs {
 	private Equipe equipe;
 	private Joueur joueur;
-
 	private ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
-
 	private String nomEquipe;
-
 	private String nomJoueur;
 	private String prenomJoueur;
 	private int numeroJoueur;
 
-	@Given("^une equipe$")
-	public void uneEquipe () throws Throwable {
-
+	@Given("une équipe")
+	public void une_équipe() {
+	    // Write code here that turns the phrase above into concrete actions
 	}
 
 	@When("^Estelle choisit le nom (.*), le prénom (.*) et le numéro (\\d+) du joueur$")
@@ -34,7 +33,6 @@ public class HandballStepDefs {
 	public void creerJoueur() throws Throwable {
 		this.joueur = new Joueur (nomJoueur, prenomJoueur, numeroJoueur);
 	}
-
 
 	@Given("^une envie$")
 	public void uneEnvie () throws Throwable {
@@ -50,16 +48,16 @@ public class HandballStepDefs {
 		this.equipe = new Equipe (nomEquipe);
 	}
 
-	@Given("^une equipe et une joueur$")
-	public void uneEquipeEtUnJoueur () throws Throwable {
+	@Given("une équipe et un joueur")
+	public void une_équipe_et_un_joueur() {
+	    // Write code here that turns the phrase above into concrete actions
 	}
-
+	
 	@When("^le joueur est ajouté à l'équipe (.*)$")
 	public void ajoutJoueurEquipe(String e) throws Throwable {
-		if(equipe.getNom() == e ){
-			this.listeJoueur = this.equipe.ajouterJoueur(joueur);
-		}
-		
+		//if(equipe.getNom() == e){
+			//this.listeJoueur = this.equipe.ajouterJoueur(joueur);
+		//}
 	}
 
 	@Then("^la liste des joueurs de l'équipe est affiché$")

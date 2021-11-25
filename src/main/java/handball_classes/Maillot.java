@@ -50,10 +50,11 @@ public class Maillot {
      * Pour afficher les détails du joueur, la méthode details de la classe Joueur est appelée à partir de l'insctance de Joueur
      * @return détails du joueur et du maillot du joueur
      */
-    public String afficherDetailsJoueur (){
+    public String afficherDetailsJoueur(){
         return this.joueur.afficherDetailsJoueur() + " Mon maillot a pour marque " + this.marque + ". Ma taille est " + this.taille + ".";
     }
     
+	// Redéfinition de la méthode toString() pour afficher le nom de l'équipe au lieu de l'identifiant de l'instance
     @Override
 	public String toString(){ 
 		  return this.getMarque() + " " + this.getTaille();  

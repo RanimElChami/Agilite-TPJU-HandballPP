@@ -6,31 +6,6 @@ public class Ordinateur {
 	public String type;
 	public String brand;
 	public ArrayList<Peripherique> peripheriques;
-	
-	// Getters and setters
-	public String getType(){
-		return this.type;
-	}
-
-	public void setType(String type){
-		this.type = type;
-	}
-
-	public String getBrand(){
-		return this.brand;
-	}
-
-	public void setBrand(String brand){
-		this.brand = brand;
-	}
-
-	public ArrayList<Peripherique> getPeripheriques() {
-		return peripheriques;
-	}
-
-	public void setPeripheriques(ArrayList<Peripherique> peripheriques) {
-		this.peripheriques = peripheriques;
-	}
 
 	// Constructeur
 	public Ordinateur(String type, String brand){
@@ -38,7 +13,27 @@ public class Ordinateur {
 		this.brand = brand;
 		this.peripheriques = new ArrayList<Peripherique>();
 	}
-	
+
+	// Getters and setters
+	public String getType(){
+		return this.type;
+	}
+	public void setType(String type){
+		this.type = type;
+	}
+	public String getBrand(){
+		return this.brand;
+	}
+	public void setBrand(String brand){
+		this.brand = brand;
+	}
+	public ArrayList<Peripherique> getPeripheriques() {
+		return peripheriques;
+	}
+	public void setPeripheriques(ArrayList<Peripherique> peripheriques) {
+		this.peripheriques = peripheriques;
+	}
+
 	// Méthodes
 	public String sampleMethod(){
 		String peripheriques = "\nPeripheriques : \n";
