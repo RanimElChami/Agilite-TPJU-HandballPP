@@ -28,21 +28,21 @@ Feature: US_001_RecrutementEquipe
 		| "Montpellier Handball"	|
 
 	Scenario Outline: Estelle veut recruter un joueur qui n'appartient à aucune équipe
-		Given une équipe et un joueur
-		When le joueur est ajouté à l'équipe <equipe>
+		Given une équipe <equipe> et un joueur <nom>, <prenom>, <numero>
+		When le joueur est ajouté à l'équipe
 		Then la liste des joueurs de l'équipe est affiché
 
 	Examples: 
-			| equipe												| joueur 	|
-			| "Montpellier Handball"      	| j1			|
-			| "Montpellier Handball"      	| j2			|
+			| equipe			| nom		| prenom 	| numéro	|
+			| "Montpellier Handball"      	| "Karabatic"	|"Nikola"	|33		|
+			| "Montpellier Handball"      	| "Karabatic"	|"Luka	"	|11		|
 
 	Scenario Outline: Estelle veut recruter un joueur qui appartient déjà à une équipe
-		Given une équipe et un joueur
-		When le joueur ne sera pas ajouté à <equipe>
+		Given une équipe <equipe> et un joueur <nom>, <prenom>, <numero> de l'équipe <equipeJoueur>
+		When le joueur ne sera pas ajouté à l'équipe
 		Then Un message d'erreur s'affiche
 		
 		Examples:
-			| equipe												| joueur 	|
-			| "Montpellier Handball"      	| j1		|
-			| "Montpellier Handball"      	| j2		|
+			| equipe			| nom		| prenom 	| numéro	| equipeJoueur 	|
+			| "Montpellier Handball"      	| "Karabatic"	|"Nikola"	|33		|"PSG Handball"	|
+			| "Montpellier Handball"      	| "Karabatic"	|"Luka	"	|11		|"HBC Nantes"	|
