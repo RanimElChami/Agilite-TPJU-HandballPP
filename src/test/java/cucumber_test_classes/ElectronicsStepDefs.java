@@ -29,6 +29,9 @@ public class ElectronicsStepDefs {
 	@Then("le peripherique est affecte")
 	public void le_peripherique_est_affecte(){
 		ord.addPeripherique(this.logitech);
+		String expected= this.logitech.getType() + " de "+ord.getType()+" "+ord.getBrand()+"\nPeripheriques : \n"+this.logitech.getType()+"\n";
+        String  result= logitech.sampleMethod();
+        Assert.assertTrue(expected.equals(result));
 	}
 	
 	
@@ -50,7 +53,9 @@ public class ElectronicsStepDefs {
 
 	@Then("chaque ordinateur est affiche avec ses peripheriques")
 	public void chaque_ordinatuer_est_affiche_avec_ses_peripheriques() {
-		System.out.println(this.ord);
+		String expected= ord.getType()+" "+ord.getBrand()+"\nPeripheriques : \n"+logitech.getType()+"\n"+cherry.getType()+"\n";
+        String  result= ord.sampleMethod();
+        Assert.assertTrue(expected.equals(result));
 	}
 
 }
