@@ -21,8 +21,8 @@ public class JoueurVirtuelStepsDefs {
 	private Peripherique oculus;
 	private Peripherique joysticks;
 	
-	@Given("une (.*)")
-	public void une(String equipe) {
+	@Given("une {string} donnée")
+	public void une_donnée(String equipe) {
 		planeteTerre = new Equipe(equipe);
 	}
 
@@ -46,7 +46,7 @@ public class JoueurVirtuelStepsDefs {
 		String expected= "Hello, je m'appelle " + joueurV1.getPrenom() + " " + joueurV1.getNom() + ". Mon numéro est " +
 		    	joueurV1.getNumero() + ", je fait partie de l'équipe " + joueurV1.getEquipe().getNom() + "." + 
 				ord.getType()+" "+ord.getBrand()+"\nPeripheriques : \n"+oculus.getType()+"\n"+joysticks.getType()+"\n" ;
-        String  result= joueurV1.afficherDetailsJoueur();
+        String result= joueurV1.afficherDetailsJoueur();
         Assert.assertTrue(expected.equals(result));
 	}
 
@@ -90,8 +90,7 @@ public class JoueurVirtuelStepsDefs {
 		joueurV1 = new JoueurVirtuel(joueur.getNom(), joueur.getPrenom(), joueur.getNumero(), null);
 		planeteTerre.ajouterJoueur(joueurV1);
 		Ordinateur expected= null ;
-        Ordinateur  result= joueurV1.getOrdinateur();
+        Ordinateur result= joueurV1.getOrdinateur();
         Assert.assertEquals(expected, result);
-		
 	}
 }

@@ -34,7 +34,7 @@ public class JoueurVirtuelTest {
 		newOrdinateur = new Ordinateur("Desktop", "Apple");
 		newJoueurVirtuel = new JoueurVirtuel("Kobe", "Bryant", 24, null);
 		newJoueurVirtuelFactory = new JoueurFactory();
-		secondNewJoueurVirtuel = new JoueurVirtuel("Nicholas", "Pierre", 24, null);
+		secondNewJoueurVirtuel = new JoueurVirtuel("Nicholas", "Pierre", 24);
 		newMaillot = new Maillot("XL", "Nike", newJoueurVirtuel);
 		equipeVirtuelle = new Equipe("Equipe de France");
 		hp = new Peripherique("Imprimante");
@@ -58,7 +58,14 @@ public class JoueurVirtuelTest {
 		
 		assertEquals(newMaillot.getJoueur(), newJoueurVirtuel);
 	}
-
+	
+	@Test
+    public void testDetailsJoueurVirtuel() {
+        newJoueurVirtuel.setEquipe(equipeVirtuelle);
+        String s = "Hello, je m'appelle Bryant Kobe. Mon numéro est 24, je fait partie de l'équipe Equipe de France.";
+        assertEquals(newJoueurVirtuel.afficherDetailsJoueur(), s);
+    }
+	
 	@Test
 	public void testProprietesJoueurVirtuelFactory() {
 		iJoueur = newJoueurVirtuelFactory.getJoueur("JoueurVirtuel");

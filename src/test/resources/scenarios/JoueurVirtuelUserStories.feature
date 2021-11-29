@@ -6,7 +6,7 @@ Feature: US_003_CompetitionIntergalactique
   
   
   Scenario Outline: Coach recrute des nouveaux joueurs virtuels dans l'equipe
-    Given une <equipe>
+    Given une <equipe> donnée
 		When coach choisit le nom <nom>, le prenom <prenom> et le numero <numero> du joueur virtuel et lui affecte un <ordinateur> avec ses <peripherique>
 		Then le joueur virtuel est cree et il reçoit le materiel
 		

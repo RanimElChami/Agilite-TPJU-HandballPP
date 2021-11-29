@@ -19,7 +19,7 @@ public class HandballStepDefs {
 	private String prenomJoueur;
 	private int numeroJoueur;
 
-	@Given("une équipe")
+	@Given("^une équipe$")
 	public void une_équipe() {
 		this.equipe = new Equipe (nomEquipe);
 	}
@@ -64,17 +64,14 @@ public class HandballStepDefs {
 		this.joueur = new Joueur(nJoueur, pJoueur, nuJoueur);
 		this.equipe2.ajouterJoueur(joueur);
 	}
-	
-	
+
 	@When("le joueur ne sera pas ajouté à l'équipe")
 	public void le_joueur_ne_sera_pas_ajouté_à() {
 		try {
 			this.listeJoueur = this.equipe.ajouterJoueur(joueur);
-		} catch (JoueurDejaMembreException e) {
-			
-		}
+		} catch (JoueurDejaMembreException e) {}
 	}
-	
+
 	@When("^le joueur est ajouté à l'équipe$")
 	public void ajoutJoueurEquipe() throws Throwable {
 		this.listeJoueur = this.equipe.ajouterJoueur(joueur);

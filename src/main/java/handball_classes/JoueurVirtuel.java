@@ -21,6 +21,9 @@ public class JoueurVirtuel extends Joueur {
 		super(nom,prenom, num);
 		this.ordinateur = ordinateur;
 	}
+	public JoueurVirtuel(String nom, String prenom, int num){
+		this(nom, prenom, num,(Ordinateur) null);
+	}
 	
 	// Getters and setters
 	public Ordinateur getOrdinateur() {

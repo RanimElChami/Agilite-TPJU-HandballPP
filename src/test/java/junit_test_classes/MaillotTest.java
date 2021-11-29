@@ -36,7 +36,15 @@ public class MaillotTest {
 
 		// Verifier que deux joueurs ne peuvent pas avoir le meme numéro dans une meme equipe
 	}
-
+	
+	@Test
+    public void testChangementProprieteMaillot() {
+        newMaillot.setMarque("Hummel");
+        assertEquals(newMaillot.getMarque(),"Hummel");
+        newMaillot.setTaille("XL");
+        assertEquals(newMaillot.getTaille(),"XL");
+    }
+	
 	@Test
 	public void testAffichageDetailsMaillot() {
 		// Vérifier que le résultat renvoyer par la méthode details()
