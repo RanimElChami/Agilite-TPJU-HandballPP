@@ -42,7 +42,6 @@ public class JoueurVirtuelStepsDefs {
 		ord.addPeripherique(oculus);
 		ord.addPeripherique(joysticks);
 		joueurV1.setOrdinateur(ord);
-		joueurV1.setEquipe(planeteTerre);
 		planeteTerre.ajouterJoueur(joueurV1);
 		String expected= "Hello, je m'appelle " + joueurV1.getPrenom() + " " + joueurV1.getNom() + ". Mon numéro est " +
 		    	joueurV1.getNumero() + ", je fait partie de l'équipe " + joueurV1.getEquipe().getNom() + "." + 
@@ -71,9 +70,9 @@ public class JoueurVirtuelStepsDefs {
 	    joueurV1.setOrdinateur(joueurV2.getOrdinateur());
 	    joueurV2.seDeconnecter();
 	    Ordinateur destination= joueurV1.getOrdinateur();
-	    Ordinateur  source= joueurV2.getOrdinateur();
+	    Ordinateur source = joueurV2.getOrdinateur();
 	    Assert.assertTrue(!destination.equals(source));
-	    Assert.assertTrue(source.equals(null));
+	    Assert.assertNull(source);
 	}
 
 	@Given("un joueur ordinaire avec le nom (.*), le prenom (.*) et le numero (\\d+)")
@@ -92,7 +91,7 @@ public class JoueurVirtuelStepsDefs {
 		planeteTerre.ajouterJoueur(joueurV1);
 		Ordinateur expected= null ;
         Ordinateur  result= joueurV1.getOrdinateur();
-        Assert.assertTrue(expected.equals(result));
+        Assert.assertEquals(expected, result);
 		
 	}
 }
