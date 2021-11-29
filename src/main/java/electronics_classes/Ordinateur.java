@@ -52,8 +52,8 @@ public class Ordinateur {
 	public boolean equals(Object obj) {
 		if (obj instanceof Ordinateur) {
 			Ordinateur ordi= (Ordinateur)obj;
-			return ordi.getType().equals(this.type) && ordi.getBrand().equals(this.brand) 
-					&& ordi.getPeripheriques().equals(this.peripheriques);
+			return ordi.getType().equals(this.getType()) && ordi.getBrand().equals(this.getBrand()) 
+					&& ordi.getPeripheriques().equals(this.getPeripheriques());
 		}
 		return false;
 	}

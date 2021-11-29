@@ -77,7 +77,7 @@ public class JoueurVirtuelStepsDefs {
 
 	@Then("le coach va le transformer en joueur virtuelle")
 	public void le_coach_va_le_transformer_en_joueur_virtuelle() throws JoueurDejaMembreException {
-		joueurV1 = new JoueurVirtuel(joueur.getNom(), joueur.getPrenom(), joueur.getNumero());
+		joueurV1 = new JoueurVirtuel(joueur.getNom(), joueur.getPrenom(), joueur.getNumero(), null);
 		planeteTerre.ajouterJoueur(joueurV1);
 	}
 }

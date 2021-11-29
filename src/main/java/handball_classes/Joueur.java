@@ -25,9 +25,7 @@ public class Joueur implements IJoueur {
         this.prenom = prenom;
         this.numero = num;
     }
-    
-    public Joueur(){}
-    
+        
     // Les accesseurs des attributs de la classe Joueur
     public String getNom(){
         return this.nom;
@@ -62,22 +60,17 @@ public class Joueur implements IJoueur {
      * @return les informations générales du joueur
      */
     public String afficherDetailsJoueur(){
-    	if(Objects.nonNull(this.equipe)) {
-    		return "Hello, je m'appelle " + prenom + " " + nom + ". Mon numéro est " +
-    	numero + ", je fait partie de l'équipe " + this.equipe.getNom() + ".";
+    	if(Objects.nonNull(this.getEquipe())) {
+    		return "Hello, je m'appelle " + this.getPrenom() + " " + this.getNom() + ". Mon numéro est " +
+    				this.getNumero() + ", je fait partie de l'équipe " + this.getEquipe().getNom() + ".";
     	} else {
-    		return "Hello, je m'appelle " + this.prenom + " " + this.nom + ". Mon numéro est " + 
-    	this.numero + ", je n'ai pas encore d'équipe.";
+    		return "Hello, je m'appelle " + this.getPrenom() + " " + this.getNom() + ". Mon numéro est " + 
+    	this.getNumero() + ", je n'ai pas encore d'équipe.";
     	}
     }
     
-	// Redéfinition de la méthode toString() pour afficher le nom de l'équipe au lieu de l'identifiant de l'instance
-    @Override
-	public String toString(){ 
-		  return this.getPrenom() + " " + this.getNom();  
-	}
-
-    public void typeDuJoueur() {
-		System.out.println("Je suis un joueur de handball");
+    
+    public String typeDuJoueur() {
+		return "Je suis un joueur réel de handball";
 	}
 }

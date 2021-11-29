@@ -21,10 +21,6 @@ public class JoueurVirtuel extends Joueur {
 		super(nom,prenom, num);
 		this.ordinateur = ordinateur;
 	}
-	public JoueurVirtuel(String nom, String prenom, int num){
-		super(nom, prenom, num);
-	}
-	public JoueurVirtuel(){}
 	
 	// Getters and setters
 	public Ordinateur getOrdinateur() {
@@ -66,7 +62,7 @@ public class JoueurVirtuel extends Joueur {
 	}
 	
 	@Override
-	public void typeDuJoueur() {
-		System.out.println("Je suis un joueur virtuel de handball");
+	public String typeDuJoueur() {
+		return "Je suis un joueur virtuel de handball";
 	}
 }

@@ -13,29 +13,34 @@ import exceptions.JoueurDejaMembreException;
 import exceptions.JoueurNonMembreException;
 import exceptions.PeripheriqueDejaAjouteException;
 import handball_classes.Equipe;
+import handball_classes.IJoueur;
 import handball_classes.Joueur;
+import handball_classes.JoueurFactory;
 import handball_classes.JoueurVirtuel;
 import handball_classes.Maillot;
 
 public class JoueurVirtuelTest {
 	JoueurVirtuel newJoueurVirtuel, secondNewJoueurVirtuel;
+	JoueurFactory newJoueurVirtuelFactory;
+	IJoueur iJoueur;
 	Ordinateur newOrdinateur;
 	Maillot newMaillot;
 	Equipe equipeVirtuelle;
 	Peripherique hp, logitech;
-	
+
 	// Common fixture for running tests
 	@Before
 	public void setUp() throws Exception {
 		newOrdinateur = new Ordinateur("Desktop", "Apple");
-		newJoueurVirtuel = new JoueurVirtuel("Kobe", "Bryant", 24);
-		secondNewJoueurVirtuel = new JoueurVirtuel("Nicholas", "Pierre", 24);
+		newJoueurVirtuel = new JoueurVirtuel("Kobe", "Bryant", 24, null);
+		newJoueurVirtuelFactory = new JoueurFactory();
+		secondNewJoueurVirtuel = new JoueurVirtuel("Nicholas", "Pierre", 24, null);
 		newMaillot = new Maillot("XL", "Nike", newJoueurVirtuel);
 		equipeVirtuelle = new Equipe("Equipe de France");
 		hp = new Peripherique("Imprimante");
 		logitech = new Peripherique("Souris");
 	}
-	
+
 	@Test
 	public void testProprietesJoueurVirtuel() {
 		// Vérifier que le nom du joueur est égal à Micheal
@@ -46,8 +51,26 @@ public class JoueurVirtuelTest {
 		assertEquals(newJoueurVirtuel.getNumero(), 24);
 		// Vérifier que l'équipe de ce nouveau joueur est null
 		assertNull(newJoueurVirtuel.getEquipe());
+		assertEquals("Je suis un joueur virtuel de handball", newJoueurVirtuel.typeDuJoueur());
+		assertEquals(newJoueurVirtuel.afficherDetailsJoueur(), "Hello, je m'appelle " + newJoueurVirtuel.getPrenom() + " " + 
+				newJoueurVirtuel.getNom() + ". Mon numéro est " +
+				newJoueurVirtuel.getNumero() + ", je n'ai pas encore d'équipe.");
+		
+		assertEquals(newMaillot.getJoueur(), newJoueurVirtuel);
 	}
-	
+
+	@Test
+	public void testProprietesJoueurVirtuelFactory() {
+		iJoueur = newJoueurVirtuelFactory.getJoueur("JoueurVirtuel");
+		assertEquals(iJoueur.getClass(), JoueurVirtuel.class);
+
+		iJoueur = newJoueurVirtuelFactory.getJoueur("Joueur");
+		assertEquals(iJoueur.getClass(), Joueur.class);
+
+		iJoueur = newJoueurVirtuelFactory.getJoueur("MonJoueur");
+		assertNull(iJoueur);
+	}
+
 	@Test
 	public void testAjoutDeJoueursVirtuelsEquipeVirtuelle() throws JoueurDejaMembreException {
 		// Ajouter le joueur à cette équipe
@@ -59,7 +82,7 @@ public class JoueurVirtuelTest {
 		// Vérifier si la liste de joueur contient le joueur qui a été ajouté
 		assertTrue(nouvelleListeJoueurs.contains(newJoueurVirtuel));
 	}
-	
+
 	@Test
 	public void testAjoutDePlusieursJoueursVirtuelsEquipeVirtuelle() throws JoueurDejaMembreException {
 		// Ajouter plusieurs joueurs en meme temps
@@ -72,6 +95,7 @@ public class JoueurVirtuelTest {
 		// Ajouter le joueur à cette équipe
 		ArrayList<Joueur> nouvelleListeJoueurs = equipeVirtuelle.ajouterJoueur(newJoueurVirtuel);
 		nouvelleListeJoueurs = equipeVirtuelle.ajouterJoueur(newJoueurVirtuel);
+		assertEquals(nouvelleListeJoueurs.size(), 0);
 	}
 
 	@Test(expected = JoueurDejaMembreException.class)
@@ -99,14 +123,13 @@ public class JoueurVirtuelTest {
 
 	@Test(expected = JoueurNonMembreException.class)
 	public void testJoueurVirtuelNonMembreException() throws JoueurNonMembreException {
-		ArrayList<Joueur> nouvelleListeSupression;
-		nouvelleListeSupression = equipeVirtuelle.supprimerJoueur(newJoueurVirtuel);
+		ArrayList<Joueur> nouvelleListeSupression = equipeVirtuelle.supprimerJoueur(newJoueurVirtuel);
 		// Vérifier si le joueur ne fait plus partie de l'équipe
 		assertFalse(nouvelleListeSupression.contains(newJoueurVirtuel));
 		// Vérifier que le joueur n'a plus d'équipe et l'attribut équipe est null
 		assertNull(newJoueurVirtuel.getEquipe());
 	}
-	
+
 	// Tests des liens entre joueur virtuel et ordinateur
 	@Test
 	public void testAttributionOrdinateurAJoueurVirtuel() {
@@ -116,7 +139,7 @@ public class JoueurVirtuelTest {
 		assertNotNull(newJoueurVirtuel.getOrdinateur());
 		assertEquals(newJoueurVirtuel.getOrdinateur(), newOrdinateur);
 	}
-	
+
 	@Test
 	public void testAjoutPéripheriquesAuJoueurOrdinateur() throws PeripheriqueDejaAjouteException {
 		// Après avoir attribué un ordinateur au joueur virtuel, on attribue maintenant un ou plusieurs 
@@ -128,19 +151,19 @@ public class JoueurVirtuelTest {
 		assertEquals(logitech.getOrdi(), newOrdinateur);
 		assertEquals(hp.getOrdi(), newOrdinateur);
 	}
-	
+
 	@Test(expected = PeripheriqueDejaAjouteException.class)
 	public void testAjoutMemePéripheriquesAuJoueurOrdinateur() throws PeripheriqueDejaAjouteException {
 		// Après avoir attribué un ordinateur au joueur virtuel, vérifier si une exception est lancée
 		// lorsqu'on ajoute le meme périphérique plusieurs fois au meme ordinateur
 		newJoueurVirtuel.setOrdinateur(newOrdinateur);
 		newJoueurVirtuel.ajouterPeripherique(logitech);
-		newJoueurVirtuel.ajouterPeripherique(logitech);
 		// Vérifier que le périphérique a bien été ajouté à la liste et la propriété ordinateur du périphérique
 		// est égale à l'ordinateur auquel ce périphérique a été ajouté
 		assertEquals(logitech.getOrdi(), newOrdinateur);
+		newJoueurVirtuel.ajouterPeripherique(logitech);
 	}
-	
+
 	@Test
 	public void testDeconnectionDuJoueurVirtuelDeSonOrdinateur() {
 		newJoueurVirtuel.setOrdinateur(newOrdinateur);
@@ -150,9 +173,5 @@ public class JoueurVirtuelTest {
 		newJoueurVirtuel.seDeconnecter();
 		// Vérifier que le joueur virtuel n'a plus d'ordinateur attribué
 		assertNull(newJoueurVirtuel.getOrdinateur());
-		
-		// Vérifier si la liste de périphériques de l'odinateur en question est vide après deconnection
-		//assertNull(logitech.getOrdi());
-		//assertNull(hp.getOrdi());
 	}
 }

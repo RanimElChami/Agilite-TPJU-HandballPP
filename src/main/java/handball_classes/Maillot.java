@@ -51,7 +51,7 @@ public class Maillot {
      * @return détails du joueur et du maillot du joueur
      */
     public String afficherDetailsJoueur(){
-        return this.joueur.afficherDetailsJoueur() + " Mon maillot a pour marque " + this.marque + ". Ma taille est " + this.taille + ".";
+        return this.joueur.afficherDetailsJoueur() + " Mon maillot a pour marque " + this.getMarque() + ". Ma taille est " + this.getTaille() + ".";
     }
     
 	// Redéfinition de la méthode toString() pour afficher le nom de l'équipe au lieu de l'identifiant de l'instance
