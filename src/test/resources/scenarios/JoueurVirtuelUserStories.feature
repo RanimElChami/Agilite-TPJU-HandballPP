@@ -6,16 +6,16 @@ Feature: US_003_CompetitionIntergalactique
   
   
   Scenario Outline: Coach recrute des nouveaux joueurs virtuels dans l'equipe
-    Given une equipe
-		When coach choisit le nom <nom>, le prenom <prenom> et le numero <numero> du joueur virtuel
-		Then le joueur virtuel est cree et il reçoit un <ordinateur> avec ses <peripherique>
+    Given une <equipe>
+		When coach choisit le nom <nom>, le prenom <prenom> et le numero <numero> du joueur virtuel et lui affecte un <ordinateur> avec ses <peripherique>
+		Then le joueur virtuel est cree et il reçoit le materiel
 		
 		  Examples: 
-      | nom          | prenom    | numero | ordinateur              | peripherique        |
-      | "ALAMMASSE"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR GantsVR" |
-      | "BENISSA"    | "Yassine" | 7      | "PS5 Sony"              | "CasqueVR GantsVR" |
-      | "EL CHAMI"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR GantsVR" |
-      | "GRAU-FARRE" | "Estelle" | 11     | "XboxSeriesX Microsoft" | "CasqueVR GantsVR" |
+      | equipe     | nom          | prenom    | numero | ordinateur              | peripherique       |
+      | "Terre"    | "ALAMMASSE"  | "Samia"   | 12     | "XboxOnex Microsoft"    | "CasqueVR GantsVR" |
+      | "Terre"    | "BENISSA"    | "Yassine" | 7      | "PS5 Sony"              | "CasqueVR GantsVR" |
+      | "TerreU20" | "EL CHAMI"   | "Ranim"   | 1      | "PS4 Sony"              | "CasqueVR GantsVR" |
+      | "TerreU20" | "GRAU-FARRE" | "Estelle" | 11     | "XboxSeriesX Microsoft" | "CasqueVR GantsVR" |
 
   
   Scenario Outline: Coach veut faire un changement de joueurs virtuels

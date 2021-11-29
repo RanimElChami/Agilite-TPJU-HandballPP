@@ -21,27 +21,34 @@ public class JoueurVirtuelStepsDefs {
 	private Peripherique oculus;
 	private Peripherique joysticks;
 	
-	@Given("une equipe")
-	public void une_equipe() {
-		planeteTerre = new Equipe("Planete Terre");
+	@Given("une (.*)")
+	public void une(String equipe) {
+		planeteTerre = new Equipe(equipe);
 	}
 
-	@When("coach choisit le nom (.*), le prenom (.*) et le numero (\\d+) du joueur virtuel")
-	public void coach_choisit_le_nom_le_prenom_et_le_numero_du_joueur_virtuel(String nom, String prenom, Integer n) {
-		joueurV1 = new JoueurVirtuel(nom, prenom, n, null); 
-	}
-
-	@Then("le joueur virtuel est cree et il reçoit un (.*) avec ses (.*)")
-	public void le_joueur_virtuel_est_cree_et_il_reçoit_un_avec_ses(String ordinateur, String peripherique) throws JoueurDejaMembreException {
+	@When("coach choisit le nom (.*), le prenom (.*) et le numero (\\d+) du joueur virtuel et lui affecte un (.*) avec ses (.*)")
+	public void coach_choisit_le_nom_le_prenom_et_le_numero_du_joueur_virtuel_et_lui_affecte_un_avec_ses
+	(String nom, String prenom, Integer n,String ordinateur, String peripherique) {
+		joueurV1 = new JoueurVirtuel(nom, prenom, n, null);
 		String[] words = ordinateur.split(" ");
 		ord = new Ordinateur(words[0], words[1]);
 		words = peripherique.split(" ");
 		oculus = new Peripherique(words[0]);
 		joysticks = new Peripherique(words[1]);
+	}
+
+	@Then("le joueur virtuel est cree et il reçoit le materiel")
+	public void le_joueur_virtuel_est_cree_et_il_reçoit_le_materiel() throws JoueurDejaMembreException {
 		ord.addPeripherique(oculus);
 		ord.addPeripherique(joysticks);
 		joueurV1.setOrdinateur(ord);
+		joueurV1.setEquipe(planeteTerre);
 		planeteTerre.ajouterJoueur(joueurV1);
+		String expected= "Hello, je m'appelle " + joueurV1.getPrenom() + " " + joueurV1.getNom() + ". Mon numéro est " +
+		    	joueurV1.getNumero() + ", je fait partie de l'équipe " + joueurV1.getEquipe().getNom() + "." + 
+				ord.getType()+" "+ord.getBrand()+"\nPeripheriques : \n"+oculus.getType()+"\n"+joysticks.getType()+"\n" ;
+        String  result= joueurV1.afficherDetailsJoueur();
+        Assert.assertTrue(expected.equals(result));
 	}
 
 	@Given("le joueur virtuel numero (\\d+) au banc")
@@ -63,6 +70,10 @@ public class JoueurVirtuelStepsDefs {
 	public void la_machine_va_passer_au_joueur_choisi_par_le_coach() {
 	    joueurV1.setOrdinateur(joueurV2.getOrdinateur());
 	    joueurV2.seDeconnecter();
+	    Ordinateur destination= joueurV1.getOrdinateur();
+	    Ordinateur  source= joueurV2.getOrdinateur();
+	    Assert.assertTrue(!destination.equals(source));
+	    Assert.assertTrue(source.equals(null));
 	}
 
 	@Given("un joueur ordinaire avec le nom (.*), le prenom (.*) et le numero (\\d+)")
@@ -79,5 +90,9 @@ public class JoueurVirtuelStepsDefs {
 	public void le_coach_va_le_transformer_en_joueur_virtuelle() throws JoueurDejaMembreException {
 		joueurV1 = new JoueurVirtuel(joueur.getNom(), joueur.getPrenom(), joueur.getNumero());
 		planeteTerre.ajouterJoueur(joueurV1);
+		Ordinateur expected= null ;
+        Ordinateur  result= joueurV1.getOrdinateur();
+        Assert.assertTrue(expected.equals(result));
+		
 	}
 }
